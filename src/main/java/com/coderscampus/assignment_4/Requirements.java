@@ -12,8 +12,14 @@ public class Requirements {
 
 		BufferedReader studentInfo = null;
 		Integer stuIdandGrade;
+
 		Student[] allStudents = new Student[100];
+		Student[] compSci = new Student[101];
+		Student[] stat = new Student[101];
+		Student[] apmth = new Student[101];
+
 		int i = 0;
+		
 		try {
 			studentInfo = new BufferedReader(new FileReader("student-master-list.csv"));
 			studentInfo.readLine();
@@ -21,31 +27,42 @@ public class Requirements {
 				String info = studentInfo.readLine();
 				String[] allStudentInfo = info.split(",");
 
-//				for (String data : allStudentInfo) {
-//					Boolean numMatch = data.matches("^[1-9][0-9]?$|^100$");
-//
-//					if (numMatch) {
-//						Integer intData = Integer.valueOf(data);
-//						stuIdandGrade = intData;
-//					}
-//				}
-				
-				Student student = StudentService.createStudent(Integer.valueOf(
-						allStudentInfo[0]), 
-						allStudentInfo[1],
-						allStudentInfo[2],
-						Integer.valueOf(allStudentInfo[3]));
+				Student student = StudentService.createStudent(Integer.valueOf(allStudentInfo[0]), allStudentInfo[1],
+						allStudentInfo[2], Integer.valueOf(allStudentInfo[3]));
 
-				allStudents[i++] = student; 
+				allStudents[i++] = student;
 				System.out.println(i);
-
 			}
+
+			
+
+				for (Student stu : allStudents) {
+
+					for (int j = 0; j < allStudents.length; j++) {
+
+						if (stu.getCoursename().startsWith("COMP")) {
+							compSci[j++] = stu;
+							stu = allStudents[j++];
+
+						}
+						if (stu.getCoursename().startsWith("STAT")) {
+							stat[j++] = stu;
+							stu = allStudents[j++];
+
+						}
+						if (stu.getCoursename().startsWith("APMTH")) {
+							apmth[j++] = stu;
+							stu = allStudents[j++];
+
+						} 
+					}
+				}
+			
 
 		} finally {
 			if (studentInfo != null)
 				studentInfo.close();
 		}
-
 	}
 
 }
