@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.coderscampus.myapp.service.StudentService;
 
@@ -27,6 +29,7 @@ public class Requirements {
 		try {
 			studentInfo = new BufferedReader(new FileReader("student-master-list.csv"));
 			studentInfo.readLine();
+
 			while (i < 100) {
 				String info = studentInfo.readLine();
 				String[] allStudentInfo = info.split(",");
@@ -63,14 +66,23 @@ public class Requirements {
 		BufferedWriter writer = null;
 
 		Student[] cleanedCompSci = Arrays.stream(compSci).filter(Objects::nonNull).toArray(Student[]::new);
+
+		List<Student> finalCleanedCompSci = Arrays.stream(cleanedCompSci).collect(Collectors.toList());
+
+		finalCleanedCompSci.sort((o1, o2) -> o1.getGrade().compareTo(o2.getGrade()));
+
+		Student[] finalCleanedCompSciArray = finalCleanedCompSci.toArray(new Student[0]);
+
 		try {
 
-			writer = new BufferedWriter(new FileWriter("compsci-student-master.txt"));
-			writer.write("Student Id | Student Name | Course | Grade\n");
-			for (int d = 0; d < cleanedCompSci.length; d++) {
+			writer = new BufferedWriter(new FileWriter("compsci-student-master.csv"));
+			writer.write("Student Id,Student Name,Course,Grade\n");
+			for (int d = 0; d < finalCleanedCompSciArray.length; d++) {
 
-				writer.write(cleanedCompSci[d].getStudentId() + " | " + cleanedCompSci[d].getStudentname() + " | "
-						+ cleanedCompSci[d].getCoursename() + " | " + cleanedCompSci[d].getGrade() + "\n");
+				writer.write(
+						finalCleanedCompSciArray[d].getStudentId() + "," + finalCleanedCompSciArray[d].getStudentname()
+								+ "," + finalCleanedCompSciArray[d].getCoursename() + ","
+								+ finalCleanedCompSciArray[d].getGrade() + "\n");
 			}
 		} finally {
 			writer.close();
@@ -79,14 +91,22 @@ public class Requirements {
 		BufferedWriter writer1 = null;
 
 		Student[] cleanedStat = Arrays.stream(stat).filter(Objects::nonNull).toArray(Student[]::new);
+
+		List<Student> finalCleanedStat = Arrays.stream(cleanedStat).collect(Collectors.toList());
+
+		finalCleanedStat.sort((o1, o2) -> o1.getGrade().compareTo(o2.getGrade()));
+
+		Student[] finalCleanedStatArray = finalCleanedStat.toArray(new Student[0]);
+
 		try {
 
-			writer1 = new BufferedWriter(new FileWriter("stat-student-master.txt"));
-			writer1.write("Student Id | Student Name | Course | Grade\n");
-			for (int a = 0; a < cleanedStat.length; a++) {
+			writer1 = new BufferedWriter(new FileWriter("stat-student-master.csv"));
+			writer1.write("Student Id,Student Name,Course,Grade\n");
+			for (int a = 0; a < finalCleanedStatArray.length; a++) {
 
-				writer1.write(cleanedStat[a].getStudentId() + " | " + cleanedStat[a].getStudentname() + " | "
-						+ cleanedStat[a].getCoursename() + " | " + cleanedStat[a].getGrade() + "\n");
+				writer1.write(finalCleanedStatArray[a].getStudentId() + "," + finalCleanedStatArray[a].getStudentname()
+						+ "," + finalCleanedStatArray[a].getCoursename() + "," + finalCleanedStatArray[a].getGrade()
+						+ "\n");
 			}
 		} finally {
 			writer1.close();
@@ -95,14 +115,20 @@ public class Requirements {
 		BufferedWriter writer2 = null;
 
 		Student[] cleanedApmth = Arrays.stream(apmth).filter(Objects::nonNull).toArray(Student[]::new);
+
+		List<Student> finalCleanedApmth = Arrays.stream(cleanedApmth).collect(Collectors.toList());
+
+		finalCleanedApmth.sort((o1, o2) -> o1.getGrade().compareTo(o2.getGrade()));
+
+		Student[] finalCleanedApmthArray = finalCleanedApmth.toArray(new Student[0]);
 		try {
 
-			writer2 = new BufferedWriter(new FileWriter("apmth-student-master.txt"));
-			writer2.write("Student Id | Student Name | Course | Grade\n");
-			for (int k = 0; k < cleanedApmth.length; k++) {
+			writer2 = new BufferedWriter(new FileWriter("apmth-student-master.csv"));
+			writer2.write("Student Id,Student Name,Course,Grade\n");
+			for (int k = 0; k < finalCleanedApmthArray.length; k++) {
 
-				writer2.write(cleanedApmth[k].getStudentId() + " | " + cleanedApmth[k].getStudentname() + " | "
-						+ cleanedApmth[k].getCoursename() + " | " + cleanedApmth[k].getGrade() + "\n");
+				writer2.write(finalCleanedApmthArray[k].getStudentId() + "," + finalCleanedApmthArray[k].getStudentname() + ","
+						+ finalCleanedApmthArray[k].getCoursename() + "," + finalCleanedApmthArray[k].getGrade() + "\n");
 			}
 		} finally {
 			writer2.close();

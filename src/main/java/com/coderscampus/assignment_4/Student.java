@@ -36,5 +36,10 @@ public class Student {
 	
 	public void setStudentId(Integer studentId) {
 		this.studentId = studentId;
+	} 
+	
+	public String toString() {
+		return "Student name is " +  studentname + "their course name is" + coursename 
+				+ "with grade " + grade + "and their student ID" + studentId;
 	}
 }

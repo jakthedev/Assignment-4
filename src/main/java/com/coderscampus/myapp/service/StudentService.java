@@ -11,7 +11,7 @@ public class StudentService {
 		student.setStudentId(studentId); 
 		student.setStudentName(studentname); 
 		student.setCoursename(coursename);  
-		student.setGrade(grade);
+		student.setGrade(grade); 
 		return student;
 	}
 }
