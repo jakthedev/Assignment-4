@@ -38,7 +38,6 @@ public class Requirements {
 						allStudentInfo[2], Integer.valueOf(allStudentInfo[3]));
 
 				allStudents[i++] = student;
-				System.out.println(i);
 			}
 			for (Student stu : allStudents) {
 
@@ -69,7 +68,7 @@ public class Requirements {
 
 		List<Student> finalCleanedCompSci = Arrays.stream(cleanedCompSci).collect(Collectors.toList());
 
-		finalCleanedCompSci.sort((o1, o2) -> o1.getGrade().compareTo(o2.getGrade()));
+		finalCleanedCompSci.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
 
 		Student[] finalCleanedCompSciArray = finalCleanedCompSci.toArray(new Student[0]);
 
@@ -85,6 +84,7 @@ public class Requirements {
 								+ finalCleanedCompSciArray[d].getGrade() + "\n");
 			}
 		} finally {
+			System.out.println(" Program as created CompSci-Student-Master.csv ");
 			writer.close();
 		}
 
@@ -94,7 +94,7 @@ public class Requirements {
 
 		List<Student> finalCleanedStat = Arrays.stream(cleanedStat).collect(Collectors.toList());
 
-		finalCleanedStat.sort((o1, o2) -> o1.getGrade().compareTo(o2.getGrade()));
+		finalCleanedStat.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
 
 		Student[] finalCleanedStatArray = finalCleanedStat.toArray(new Student[0]);
 
@@ -109,6 +109,7 @@ public class Requirements {
 						+ "\n");
 			}
 		} finally {
+			System.out.println(" Program as created Stat-Student-Master.csv ");
 			writer1.close();
 		}
 
@@ -118,7 +119,7 @@ public class Requirements {
 
 		List<Student> finalCleanedApmth = Arrays.stream(cleanedApmth).collect(Collectors.toList());
 
-		finalCleanedApmth.sort((o1, o2) -> o1.getGrade().compareTo(o2.getGrade()));
+		finalCleanedApmth.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
 
 		Student[] finalCleanedApmthArray = finalCleanedApmth.toArray(new Student[0]);
 		try {
@@ -131,6 +132,7 @@ public class Requirements {
 						+ finalCleanedApmthArray[k].getCoursename() + "," + finalCleanedApmthArray[k].getGrade() + "\n");
 			}
 		} finally {
+			System.out.println(" Program as created Apmth-Student-Master.csv ");
 			writer2.close();
 		}
 
