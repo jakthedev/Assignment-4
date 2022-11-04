@@ -13,6 +13,39 @@ import java.util.stream.Collectors;
 import com.coderscampus.myapp.service.StudentService;
 
 public class Requirements {
+	
+	private static Student[] compSciSort(Student[] compSci) {
+		Student[] cleanedCompSci = Arrays.stream(compSci).filter(Objects::nonNull).toArray(Student[]::new);
+
+		List<Student> finalCleanedCompSci = Arrays.stream(cleanedCompSci).collect(Collectors.toList());
+
+		finalCleanedCompSci.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
+
+		Student[] finalCleanedCompSciArray = finalCleanedCompSci.toArray(new Student[0]);
+		return finalCleanedCompSciArray;
+	}
+	
+	private static Student[] statSort(Student[] stat) {
+		Student[] cleanedStat = Arrays.stream(stat).filter(Objects::nonNull).toArray(Student[]::new);
+
+		List<Student> finalCleanedStat = Arrays.stream(cleanedStat).collect(Collectors.toList());
+
+		finalCleanedStat.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
+
+		Student[] finalCleanedStatArray = finalCleanedStat.toArray(new Student[0]);
+		return finalCleanedStatArray;
+	}
+	
+	private static Student[] apmthSort(Student[] apmth) {
+		Student[] cleanedApmth = Arrays.stream(apmth).filter(Objects::nonNull).toArray(Student[]::new);
+
+		List<Student> finalCleanedApmth = Arrays.stream(cleanedApmth).collect(Collectors.toList());
+
+		finalCleanedApmth.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
+
+		Student[] finalCleanedApmthArray = finalCleanedApmth.toArray(new Student[0]);
+		return finalCleanedApmthArray;
+	}
 
 	public static void main(String[] args) throws IOException {
 
@@ -64,13 +97,7 @@ public class Requirements {
 
 		BufferedWriter writer = null;
 
-		Student[] cleanedCompSci = Arrays.stream(compSci).filter(Objects::nonNull).toArray(Student[]::new);
-
-		List<Student> finalCleanedCompSci = Arrays.stream(cleanedCompSci).collect(Collectors.toList());
-
-		finalCleanedCompSci.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
-
-		Student[] finalCleanedCompSciArray = finalCleanedCompSci.toArray(new Student[0]);
+		Student[] finalCleanedCompSciArray = compSciSort(compSci);
 
 		try {
 
@@ -90,13 +117,7 @@ public class Requirements {
 
 		BufferedWriter writer1 = null;
 
-		Student[] cleanedStat = Arrays.stream(stat).filter(Objects::nonNull).toArray(Student[]::new);
-
-		List<Student> finalCleanedStat = Arrays.stream(cleanedStat).collect(Collectors.toList());
-
-		finalCleanedStat.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
-
-		Student[] finalCleanedStatArray = finalCleanedStat.toArray(new Student[0]);
+		Student[] finalCleanedStatArray = statSort(stat);
 
 		try {
 
@@ -115,13 +136,7 @@ public class Requirements {
 
 		BufferedWriter writer2 = null;
 
-		Student[] cleanedApmth = Arrays.stream(apmth).filter(Objects::nonNull).toArray(Student[]::new);
-
-		List<Student> finalCleanedApmth = Arrays.stream(cleanedApmth).collect(Collectors.toList());
-
-		finalCleanedApmth.sort((o2, o1) -> o1.getGrade().compareTo(o2.getGrade()));
-
-		Student[] finalCleanedApmthArray = finalCleanedApmth.toArray(new Student[0]);
+		Student[] finalCleanedApmthArray = apmthSort(apmth);
 		try {
 
 			writer2 = new BufferedWriter(new FileWriter("apmth-student-master.csv"));
@@ -137,5 +152,5 @@ public class Requirements {
 		}
 
 	}
-
+	
 }
