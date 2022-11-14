@@ -98,6 +98,14 @@ public class FileService {
 		return compSci;
 	}
 	
+	public Student[] getStatStudents() {
+		return stat;
+	}
+	
+	public Student[] getApmthStudents() {
+		return apmth;
+	}
+	
 	
 
 }
